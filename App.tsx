@@ -9,7 +9,7 @@ import {
   Platform,
 } from 'react-native';
 
-const packageName = 'com.simprints.id';
+const packageName = 'LibSimprints';
 const appLink =
   Platform.OS === 'android'
     ? `intent://scan#Intent;scheme=simprintsid;package=${packageName};end`
@@ -21,11 +21,15 @@ const openSimprints = async () => {
     if (canOpen) {
       await Linking.openURL(appLink);
     } else {
-      Alert.alert('Simprints is not installed');
+      Alert.alert('Simprints is not identified');
     }
   } catch (e) {
     Alert.alert('Simprints is not installed');
   }
+};
+
+const openWhatsApp = () => {
+  Linking.openURL('whatsapp://send?text=Hello%2C%20World!'); // Replace with your text message
 };
 
 const App = () => {
@@ -34,6 +38,12 @@ const App = () => {
       <Button
         onPress={openSimprints}
         title="open simprints"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+      />
+      <Button
+        onPress={openWhatsApp}
+        title="open whatsapp"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
